@@ -1,0 +1,104 @@
+psql
+sudo systemctl status postgresql
+dpkg -l | grep postgres
+cd /var/lib/postgresql/9.3/main                     ###in ubuntu
+vim /etc/postgresql/9.3/main/pg_hba.conf     ###in ubuntu
+sudo apt-get remove postgresql-9*   ### to remove postgres
+sudo apt-get purge postgresql-9*      ### to remove postgres
+http://www.postgresonline.com/special_feature.php?sf_name=postgresql90_pg_dumprestore_cheatsheet&outputformat=html
+/usr/lib/postgresql/9.3/bin/pg_restore -h 127.0.0.1 -p 5432 -U postgres -d a2 -v /home/cogmac/Desktop/db51/51_11Jun19.backup    
+sudo su postgres;
+psql
+##ALTER USER postgres WITH password 'test123';         ### before pgadmin setup
+\l                         ## listing databases
+\du                      ## listing users *
+CREATE USER tom;    ## creating users
+create database bk;   ## create database  
+/usr/lib/postgresql/9.3/bin/pg_restore -h 127.0.0.1 -p 5432 -U postgres -d bk --verbose ~/Desktop/db_machine/51_28Jun19.backup                  ### restore database
+\c a1                    ##connect to database a1
+ \dt                     ## listing tables
+select * from archivecontracts;
+select * from archivecontracts limit 10;
+select * from archivecontracts WHERE latime='2018-10-03 09:35:54.363' ;
+select * from archivecontracts WHERE insttype='FUTSTK'  ;
+
+select * from archivecontracts WHERE contractid<12;
+select * from archivecontracts WHERE fullname='SBIN18OCT260PE' ;
+
+select * from authdetails where lastaccesstime = '2018-10-01 11:28:40.728' and nnffield = '201010001001000' and traderid='7';
+
+SELECT * FROM archivecontracts WHERE table_schema = 'your_schema' AND table_name   = 'your_table' ;
+ select * from archivecontracts where strikeprice='26000' and latime = '2018-10-03 09:35:54.363' ;
+ select * from archivecontracts where strikeprice='26000' or latime = '2018-10-03 09:35:54.363' ;
+select * from archivecontracts where strikeprice='26000' and latime = '2018-10-03 09:35:54.363' and expiry = '1224945000' ;
+
+ select * from contracts where fullname ='SUNPHARMA19JUNFUT' and expiry ='1246113000';
+• select distinct script from archivecontracts ORDER BY SCRIPT  ASC ;             ### IMP COMMAND sort | distinct | ascendind order
+
+archivecontracts
+select * from archivecontracts where insttype='FUTSTK' limit 10;
+ select * from archivecontracts where insttype like 'F%' limit 10;
+select script,expiry,  fullname from archivecontracts  limit 10;
+select distinct insttype,script from archivecontracts order by insttype desc ,script asc ;    ## arranging aprticular column in ascending or descending order
+
+/etc/postgresql/9.3/main/postgresql.conf
+\copy (select * from archivecontracts limit 3) To '/tmp/test.csv' With CSV     ## comand to take logs
+\copy (select * from contracttradelog limit 2) to '/tmp/test25.csv' with csv
+
+select distinct ctclid from contracttradelog ;
+SELECT * FROM contracttradelog WHERE ctclid = '35347';
+IF EXISTS(SELECT * FROM contracttradelog WHERE ctclid = '35347'; )BEGIN -- Column Exists END
+
+https://beginner-sql-tutorial.com/sql-having-clause.htm         #### postgres link to learn trade database 
+
+SHOW COLUMNS FROM `contracttradelog` LIKE 'ctclid';
+select distinct ctclid from contracttradelog ;
+rename table
+alter table abc rename to contracttradelog;
+
+select distinct posid from contracttradelog limit 10;     
+select count (*) from contracttradelog where ctclid='35347' ;
+select sellprice from contracttradelog order by sellprice desc limit 10 ; 
+SELECT optiontype, SUM (strikeprice) FROM contracts GROUP BY optiontype;
+SELECT script,optiontype, SUM (strikeprice) FROM contracts GROUP BY optiontype,script;
+SELECT posid,ctclid, SUM (ordprice) FROM contracttradelog GROUP BY posid,ctclid;
+
+join
+SELECT fullname,ordernum FROM contracttradelog, usertradelog WHERE contracttradelog.exchordernum = usertradelog.exchordernum limit 2;
+SELECT buyprice,buyqty,bqty,p2,fullname,ordernum,contractid FROM contracttradelog, usertradelog WHERE contracttradelog.exchordernum = usertradelog.exchordernum limit 2;
+
+syntax
+SELECT col1, col2, col3... FROM table_name1, table_name2 WHERE table_name1.col2 = table_name2.col1; 
+
+insert into birju select * from customers;           ##copy one table contents into newly created table
+select max(id) from birju where id < (select max(id) from birju);    ### 2nd highest id
+
+select * from birju where id in (3,4);          ## get appropriate data 
+
+cross join
+natural join
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
