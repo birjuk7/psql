@@ -1,11 +1,11 @@
 
 to take backup by pg_dump
-                                                                                                   new_db:any name                 db_name 
+                                                               new_db:any name       db_name 
 pg_dump -h 127.0.0.1 -p 5432 -U postgres -F c -b -v -f "/home/birju/Desktop/ud_copy" udemy     ### tested running
 
    
 pg_restore -Fc -h 127.0.0.1 -U postgres -d birju_db 96_01april19_1.backup                                    ###tested running
 
 to restore database by pg_restore
-									new_db:any name                 db_name
+			             new_db:any name          db_name
 pg_restore -Fc -h 127.0.0.1 -U postgres -d ud_copy -v ~/Desktop/b01oct                                              ### tested running 
