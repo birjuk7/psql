@@ -41,7 +41,9 @@ group by to remove duplicate data
 udemy=# select * from customers group by customers.id ;
 select customers.first_name,customers.last_name,count(purchases.id) from customers join purchases on customers.id = purchases.customer_id group by customers.id;
 
-
+select * from birju inner join orders on birju.id = orders.id;
+select * from birju left join orders on birju.id = orders.id;
+select * from birju right join orders on birju.id = orders.id;
 
 
 
