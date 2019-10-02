@@ -45,8 +45,8 @@ select * from birju inner join orders on birju.id = orders.id;
 select * from birju left join orders on birju.id = orders.id;
 select * from birju right join orders on birju.id = orders.id;
 
-
-
+create table bk ( id int,first_name varchar(25));   to create new table with columns arranged in specific orders 
+insert into bk select id,first_name from birju;     to copy old table into newly created table
 
 
 
