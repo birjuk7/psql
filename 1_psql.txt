@@ -1,0 +1,21 @@
+sudo su postgres;
+psql
+\l                         ## listing databases
+\du                      ## listing users *
+CREATE USER tom;    ## creating users
+create database bk;   ## create database  
+/usr/lib/postgresql/9.3/bin/pg_restore -h 127.0.0.1 -p 5432 -U postgres -d bk --verbose ~/Desktop/db_machine/51_28Jun19.backup                  ### restore database
+
+ \dt                     ## listing tables
+select * from archivecontracts;
+select * from archivecontracts WHERE latime='2018-10-03 09:35:54.363' ;
+select * from archivecontracts WHERE insttype='FUTSTK'  ;
+
+select * from archivecontracts WHERE contractid<12;
+select * from archivecontracts WHERE fullname='SBIN18OCT260PE' ;
+
+
+SELECT * FROM archivecontracts WHERE table_schema = 'your_schema'AND table_name   = 'your_table' ;
+ select * from archivecontracts where strikeprice='26000' and latime = '2018-10-03 09:35:54.363' ;
+ select * from archivecontracts where strikeprice='26000' or latime = '2018-10-03 09:35:54.363' ;
+select * from archivecontracts where strikeprice='26000' and latime = '2018-10-03 09:35:54.363' and expiry = '1224945000' ;
