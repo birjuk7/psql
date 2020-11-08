@@ -1,0 +1,132 @@
+backup & restore
+
+#                                                         database_server                                db_name       created_backup             
+#PGPASSWORD=postgres pg_restore -h 192.168.20.117 -p 5432 -U postgres -d test_abcd -v iocalr_62.backup         #### restored on adroit machine tested
+
+
+export PGPASSWORD="postgres"
+i=`date +%d%b%y`
+PGPASSWORD=postgres pg_dump -h 192.168.20.117 -p 5432 -U postgres -F c -b -f "57_$i.backup" -v bidd_57                               ### postgres  backup
+/usr/lib/postgresql/9.3/bin/pg_restore -h 127.0.0.1 -p 5432 -U postgres -d ad53 -v ~/Desktop/adroit/53_26Aug19.backup                ### postgres  restore
+
+pg_restore -Fc -h 127.0.0.1 -U postgres -d birju_db 96_01april19_1.backup                     ###tested running
+
+======pg_dump ========== to take backup
+i=`date +%d%b%y`
+PGPASSWORD=postgres pg_dump -h 192.168.20.117 -p 5432 -U postgres -F c -b -f "51_$i.backup" rmspan51_0110
+PGPASSWORD=postgres pg_dump -h 192.168.20.117 -p 5432 -U postgres -F c -b -f "57_$i.backup" -v bidd_57
+======================
+
+
+
+PGPASSWORD=postgres pg_dump -h 127.0.0.1 -p 5432 -U postgres -F c -b -f "devdone_$i.backup" -v divya          ### postgres  backup in verbose mode
+pg_restore -h 127.0.0.1 -p 5432 -U postgres -d red -v /home/birju/devdone_18Oct19.backup                ### postgres  restore
+
+
+PGPASSWORD=postgres pg_dump -h 192.168.20.117 -p 5432 -U postgres -F -i c -b -f 53_18Oct19.backup bidlar_53
+
+testing
+
+
+PGPASSWORD=postgres pg_dump -h 192.168.20.117 -p 5432 -U postgres -F  c -b -f /root/db53/testing_18Oct19.backup -v bidlar_53
+
+pg_dump -a -h 192.168.20.117 -p 5432 -U postgres -W -Fc bidlar_53 > DATA.dump
+
+pg_dump -a -h your_host -U your_user -W -Fc your_database > DATA.dump
+
+it will create a dump with all database data and use
+
+pg_restore -a -h your_host -U your_user -W -Fc your_database < DATA.dump
+
+
+=-=-=-=-==========
+postgres backup
+
+1.open the terminal.
+2.backup your database with following command
+your postgres bin - /opt/PostgreSQL/9.1/bin/                                 #/usr/pgsql-9.6/bin/postgresql96-setup
+your source database server - 192.168.1.111
+your backup file location and name - /home/dinesh/db/mydb.backup
+your source db name - mydatabase
+https://www.imdb.com/list/ls062913334/?sort=list_order,asc&st_dt=&mode=detail&page=2
+/opt/PostgreSQL/9.1/bin/pg_dump --host '192.168.1.111' --port 5432 --username "postgres" --no-password --format custom --blobs --file "/home/dinesh/db/mydb.backup" "mydatabase"
+
+3.restore mydb.backup file into destination.
+your destination server - localhost
+your destination database name - mydatabase
+create database for restore the backup.
+/opt/PostgreSQL/9.1/bin/psql -h 'localhost' -p 5432 -U postgres -c "CREATE DATABASE mydatabase"
+
+restore the backup.
+/opt/PostgreSQL/9.1/bin/pg_restore --host 'localhost' --port 5432 --username "postgres" --dbname "mydatabase" --no-password --clean "/home/dinesh/db/mydb.backup"
+
+
+https://www.enterprisedb.com/resources/tutorials/how-use-pgdump-and-pgrestore-postgres-plus-tutorial-windows\\\
+
+
+sshpass -p abc@987 ssh -p 2005 root@182.73.186.141  
+#!/bin/bash
+PGPASSWORD=postgres pg_dump -h 192.168.20.111 -p 5432 -U postgres -F c -b -f "backup_96" rmspan221096
+
+restore
+DATE=`date +%d%m%y_%H:%M`
+sshpass -p 'abc@987' rsync -P -avz -e "ssh -p 2005" root@182.73.186.X:/root/power /home/abc/Desktop/cog 
+
+
+
+-=-=-====================
+pg_restore
+yum list installed | grep postgres
+                                   9.2             |     9.3
+m  06Jun19                  ok(1.1)        |     ok(1.2)     
+s   11Jun19(9.3.24)        no              |     ok (2.2)  
+
+
+(1.1)/usr/bin/pg_restore -h 127.0.0.1 -p 5432 -U postgres -d aa7 --verbose /home/dell/Desktop/db51/51_06Jun19.backup
+
+(1.2)/usr/pgsql-9.3/bin/pg_restore -h 127.0.0.1 -p 5432 -U postgres -d aa6 --verbose /home/dell/Desktop/db51/51_06Jun19.backup
+
+(2.1) /usr/bin/pg_restore -h 127.0.0.1 -p 5432 -U postgres -d aa7 --verbose /home/dell/Desktop/db51/51_11Jun19.backup
+
+(2.2)/usr/pgsql-9.3/bin/pg_restore -h 127.0.0.1 -p 5432 -U postgres -d aa5 --verbose /home/dell/Desktop/db51/51_11Jun19.backup
+
+/usr/bin/pg_restore --host 127.0.0.1 --port 5432 --username "postgres" --dbname "aa1" --no-password  --verbose "/home/dell/Desktop/db51/51_06June19.backup
+
+51_06June19.backup     manual backup 
+51_11June19.backup     script_backup
+
+pg_restore (PostgreSQL) 9.2.24
+/usr/bin/pg_restore --host 127.0.0.1 --port 5432 --username "postgres" --dbname "aa3" --no-password  --verbose "/home/dell/Desktop/db51/51_06June19.backup"                  ### ok
+/usr/pgsql-9.3/bin/pg_restore -h 127.0.0.1 -p 5432 -U postgres -d 9pg --verbose /home/dell/Desktop/db51/51_11Jun19.backup                                                                        
+/usr/lib/postgresql/9.3/bin/pg_restore -V
+
+
+pg_restore (PostgreSQL) 9.3.25
+/usr/pgsql-9.3/bin/pg_restore -h 127.0.0.1 -p 5432 -U postgres -d 9pg --verbose /home/dell/Desktop/db51/51_11Jun19.backup
+
+
+yum install postgresql95
+yum install postgresql95.x86_64 postgresql95-server.x86_64 postgresql95-libs.x86_64 postgresql95-odbc.x86_64 postgresql95-docs.x86_64 postgresql95-devel.x86_64 postgresql95-contrib.x86_64
+
+
+=========
+
+30 oct 19 notes  
+
+PGPASSWORD=postgres pg_dump -h 192.168.20.117 -p 5432 -U postgres -F  c -b -f /root/db53/testing_30Oct19.backup -v bidd_53   ### postgres backup
+
+pg_restore -h 127.0.0.1 -p 5432 -U postgres -d a30oct19 -v ~/Desktop/adroit/testing_30Oct19.backup                           ### postgres  restore
+
+
+change backup name
+log23012020.txt
+
+
+command
+tar -xvzf log23jan2019.tar.gz
+pg_restore -h 127.0.0.1 -p 5432 -U postgres -d adroit93 -v ~/home/birju/log23012020.txt
+
+93
+141
+53
+
