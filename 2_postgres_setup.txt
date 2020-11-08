@@ -1,0 +1,49 @@
+postgres_setup__
+
+
+Install From the CentOS Repositories
+sudo yum install postgresql-server postgresql-contrib
+
+Initialize your Postgres database and start PostgreSQL
+sudo postgresql-setup initdb
+sudo systemctl start postgresql
+
+Optional: Configure PostgreSQL to start on boot:
+sudo systemctl enable postgresql
+
+http://www.postgresonline.com/special_feature.php?sf_name=postgresql90_pg_dumprestore_cheatsheet&outputformat=html
+vim /var/lib/pgsql/11/data/pg_hba.conf
+
+in ubuntu
+cd /var/lib/postgresql/9.3/main
+vim /etc/postgresql/9.3/main/pg_hba.conf
+
+sudo apt-get remove postgresql-9*
+sudo apt-get purge postgresql-9*
+
+
+dpkg -l | grep postgres
+
+
+check######
+which psql                 /usr/bin/psql
+psql -V
+psql (PostgreSQL) 9.6.12
+
+##ALTER USER postgres WITH password 'test123';
+
+ALTER USER 'root'@'localhost' IDENTIFIED BY '123456';               ### mysql
+
+
+sudo su postgres
+psql
+\l                 #list database
+\du             #list users
+
+
+
+
+pg_dump --version
+9.2.24
+pg_restore --version
+9.2.24
