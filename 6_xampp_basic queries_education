@@ -1,0 +1,8 @@
+SELECT * FROM `csol_education` where `subject` like 'P%'
+SELECT * FROM `csol_education` where `university` like 'R%'
+
+SELECT distinct(university) FROM `csol_education`
+
+SELECT `empid`, `university`, `degree` FROM `csol_education`
+
+select `empid`, `subject` , `year` from `csol_education` where year = "1998"      
