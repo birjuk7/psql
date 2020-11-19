@@ -6,3 +6,12 @@ SELECT distinct(university) FROM `csol_education`
 SELECT `empid`, `university`, `degree` FROM `csol_education`
 
 select `empid`, `subject` , `year` from `csol_education` where year = "1998"      
+SELECT * FROM `csol_main` where `ename` like "Birju%"
+SELECT * FROM `csol_main` where `ename` like "_i__u%"
+select curdate() 'Date'
+
+select empid, ename, qualification, count(*) from `csol_main` group by qualification
+
+
+
+
