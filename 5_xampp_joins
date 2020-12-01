@@ -14,3 +14,7 @@ SELECT a.empid, a.city_code, a.postingplace, b.department_code, b.department_nam
 
 8 tables join
 SELECT b.empid, d.subject, d.year, c.ename, g.post_name, f.design_name, b.designo, e.department_name, b.desig, a.city_name, h.description FROM csol_city_master a, csol_posting b, csol_main c, csol_education d, csol_department_master e, csol_desig f, csol_nature_of_post g, csol_officer_status_code h WHERE a.city_code =b.city_code and b.empid = c.empid and b.empid="01721" and a.city_code = "018" and d.subject="Physics" and g.post_name="Cadre" and h.description="Retired"
+
+
+11 tables complex join  (less time)
+SELECT b.empid, d.subject, d.year, c.ename, g.post_name, i.state_name, k.dept, f.design_name, j.domicile, b.designo, e.department_name, b.desig, a.city_name, h.description FROM csol_city_master a, csol_posting b, csol_main c, csol_education d, csol_department_master e, csol_desig f, csol_nature_of_post g, csol_officer_status_code h, csol_state_master i, csol_transfer_request j, csol_ministry_bk k WHERE a.city_code =b.city_code and b.empid = c.empid and b.empid="01721" and a.city_code = "018" and d.subject="Physics" and g.post_name="Cadre" and h.description="Retired" and k.dept="health" and j.domicile="JK" AND i.state_name="Goa"
