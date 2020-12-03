@@ -16,5 +16,19 @@ SELECT * FROM `csol_main` where empid IN ("00001", "00007")
 
 SELECT * FROM `csol_main` where dob in ("01/07/1986","08/10/1979")
 
+SELECT a.studentid, a.name, b.total_marks FROM student a, marks b WHERE a.studentid = b.studentid AND b.total_marks >80;
+
+SELECT * FROM `csol_education` where year BETWEEN 2019 and 2020
+
+Four different types of the JOINs in SQL:
+(INNER) JOIN: Returns records that have matching values in both tables
+LEFT (OUTER) JOIN: Returns all records from the left table, and the matched records from the right table
+RIGHT (OUTER) JOIN: Returns all records from the right table, and the matched records from the left table
+FULL (OUTER) JOIN: Returns all records when there is a match in either left or right table
+
+SELECT csol_main.empid, csol_main.ename, csol_posting.datefrom FROM `csol_main` INNER JOIN csol_posting on csol_main.empid = csol_posting.empid;
+
+SELECT csol_main.empid, csol_main.ename, csol_posting.datefrom FROM csol_posting LEFT JOIN `csol_main` on csol_main.empid = csol_posting.empid order by csol_main.ename
+
 
 
