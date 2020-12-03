@@ -12,6 +12,9 @@ select curdate() 'Date'
 
 select empid, ename, qualification, count(*) from `csol_main` group by qualification
 
+SELECT * FROM `csol_main` where empid IN ("00001", "00007")
+
+SELECT * FROM `csol_main` where dob in ("01/07/1986","08/10/1979")
 
 
 
