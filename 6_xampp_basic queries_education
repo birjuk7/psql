@@ -32,3 +32,9 @@ SELECT csol_main.empid, csol_main.ename, csol_posting.datefrom FROM csol_posting
 
 SELECT csol_main.empid, csol_main.ename, csol_education.university, csol_education.year, csol_education.subject FROM `csol_main` right JOIN csol_education on csol_main.empid= csol_education.empid
 SELECT csol_main.empid, csol_main.ename, csol_education.university, csol_education.year, csol_education.subject FROM `csol_main` right JOIN csol_education on csol_main.empid= csol_education.empid order by csol_education.subject
+SELECT csol_main.empid, csol_main.ename, csol_education.university, csol_education.year, csol_education.subject FROM `csol_main` right JOIN csol_education on csol_main.empid= csol_education.empid order by csol_education.year
+SELECT csol_main.empid, csol_main.ename, csol_education.university, csol_education.year, csol_education.subject FROM `csol_main` right JOIN csol_education on csol_main.empid= csol_education.empid order by csol_main.ename
+
+
+
+
